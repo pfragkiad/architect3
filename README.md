@@ -75,8 +75,9 @@ make
 
 Στο εξεταζόμενο παράδειγμα δίνεται ότι η ισχύς κατανάλωσης σε δύο επεξεργαστές είναι ίσης με *P<sub>1</sub> = 5 W* και *P<sub>2</sub> = 40 Watt* αντίστοιχα. Για να έχουμε καλύτερη ενεργειακή απόδοση (*η*) στον δεύτερο επεξεργαστή θα πρέπει να ισχύει:
 
-η<sub>2</sub> > η<sub>1</sub> ή
-(Instructions/t<sub>2</sub>)/P<sub>2</sub> > (Instructions/t<sub>1</sub>)/P<sub>1</sub> ή
+** η<sub>2</sub> > η<sub>1</sub> ή **
+
+** (Instructions/t<sub>2</sub>)/P<sub>2</sub> > (Instructions/t<sub>1</sub>)/P<sub>1</sub> ή **
 
 
 
