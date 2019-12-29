@@ -11,8 +11,9 @@ _Παύλος Φραγκιαδουλάκης, ΑΕΜ: 8389_
 Για την εγκατάσταση του McPAT ακολουθήθηκαν τα παρακάτω βήματα με βάση την διατύπωση της εργασίας:
 1. Δημιουργήθηκε κλώνος του McPAT repository:
 
-``` git clone https://github.com/kingmouf/cmcpat.git my_mcpat ```
-
+```
+git clone https://github.com/kingmouf/cmcpat.git my_mcpat
+```
 2. Προστίθενται οι απαραίτητοι μεταγλωττιστές εφόσον δεν υπάρχουν:
 
 ```bash
@@ -22,7 +23,6 @@ sudo apt install libc6-dev-i386
 sudo apt-get install g++-multilib
 sudo apt install gcc-7-multilib g++-7-multilib
 ```
-
 3. Μεταγλώτισση με make
 ```bash
 cd my_mcpat/mcpat```
