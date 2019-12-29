@@ -77,8 +77,10 @@ make
 
 *η<sub>2</sub> > η<sub>1</sub>* ή 
 
-(Instructions/t<sub>2</sub>)/P<sub>2</sub> > (Instructions/t<sub>1</sub>)/P<sub>1</sub> ή 
+*(Instructions/t<sub>2</sub>)/P<sub>2</sub> > (Instructions/t<sub>1</sub>)/P<sub>1</sub>* ή 
 
-t<sub>1</sub>/t<sub>2</sub> > P<sub>2</sub>/P<sub>1</sub> = 40 / 5 = 8
+*t<sub>1</sub>/t<sub>2</sub> > P<sub>2</sub>/P<sub>1</sub>* ή 
+
+*t<sub>1</sub>/t<sub>2</sub> > 8*
 
 Άρα αρκεί ο δεύτερος επεξεργαστής να είναι πάνω από 8 φορές πιο γρήγορος από τον πρώτο (προκειμένου να έχει καλύτερη ενεργειακή απόδοση ο δεύτερος από τον πρώτο).
