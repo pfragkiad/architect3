@@ -133,4 +133,16 @@ chmod +x ./my_mcpat/Scripts/GEM5ToMcPAT.py
  ```[DIR: ./GEM5ToMcPat.sh ./src/Gem5_output/Benchmarks_results/<Benchmark_name>  ./src/McPAT_output/Benchmarks_results_xml/<Benchmark_name> ./src/McPAT_output/Benchmarks_results_McPAT/<Benchmark_name>]
  ```
 
+### Ερώτημα 1ο
+
+Για να βγάλουμε αποτελέσματα για το EDAP ( Energy – Delay – Area ) χρειαζόμαστε τα στατιστικά και των 2 προσομοιώσεων:
+-	**Energy** : Θα πάρουμε τα αποτελέσματα από την έξοδο του McPAT και όπως αναφέρει η εκφώνηση αφορά τα μεγέθη Runtime Dynamic, Subthreshold Leakage και Gate Leakage. Αυτά τα νούμερα αναφέρονται στην μέση ισχύ. Παρόλα αυτά, χρησιμοποιώντας το Delay όπως ορίζεται παρακάτω μπορούμε να βρούμε και τη συνολική μέση ενέργεια που κατανάλωσε το σύστημα για το συγκεκριμένο Benchmark.
+-	**Delay**: Την παράμετρο αυτή θα την βρούμε στο stats του Gem5 και εξάγεται από την τιμή *sim_seconds*.
+-	**Area**: Θα την βρούμε στην έξοδο του McPAT στα αντίστοιχα πεδία *Area*.
+- Για την τιμή του **Energy Efficiency** θα λάβουμε υπόψιν τον λόγο 1/[sim_seconds*(Runtime Dynamic + Subthreshold Leakage + Gate Leakage]) για κάθε προσομοίωση που έγινε με το ίδιο Benchmark. Αυτό το κάνουμε γιατί όλες οι αρχιτεκτονικές εκτέλεσαν τον ίδιο κώδικα (άρα παραλείπουμε το Instructions στον αριθμητή). Έτσι μπορούμε να συγκρίνουμε πιο είναι ενεργειακά αποδοτικότερο για τη συγκεκριμένη εφαρμογή κάθε φορά.
+
+### Ερώτημα 2ο
+
+Τα αποτελέσματα βρίσκονται στο φάκελο ./src/Energy_results με τα αντίστοιχα ονόματα από κάθε Benchmar
+
 
