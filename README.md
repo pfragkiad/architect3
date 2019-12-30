@@ -139,10 +139,76 @@ chmod +x ./my_mcpat/Scripts/GEM5ToMcPAT.py
 -	**Energy** : Θα πάρουμε τα αποτελέσματα από την έξοδο του McPAT και όπως αναφέρει η εκφώνηση αφορά τα μεγέθη Runtime Dynamic, Subthreshold Leakage και Gate Leakage. Αυτά τα νούμερα αναφέρονται στην μέση ισχύ. Παρόλα αυτά, χρησιμοποιώντας το Delay όπως ορίζεται παρακάτω μπορούμε να βρούμε και τη συνολική μέση ενέργεια που κατανάλωσε το σύστημα για το συγκεκριμένο Benchmark.
 -	**Delay**: Την παράμετρο αυτή θα την βρούμε στο stats του Gem5 και εξάγεται από την τιμή *sim_seconds*.
 -	**Area**: Θα την βρούμε στην έξοδο του McPAT στα αντίστοιχα πεδία *Area*.
-- Για την τιμή του **Energy Efficiency** θα λάβουμε υπόψιν τον λόγο 1/[sim_seconds*(Runtime Dynamic + Subthreshold Leakage + Gate Leakage]) για κάθε προσομοίωση που έγινε με το ίδιο Benchmark. Αυτό το κάνουμε γιατί όλες οι αρχιτεκτονικές εκτέλεσαν τον ίδιο κώδικα (άρα παραλείπουμε το Instructions στον αριθμητή). Έτσι μπορούμε να συγκρίνουμε πιο είναι ενεργειακά αποδοτικότερο για τη συγκεκριμένη εφαρμογή κάθε φορά.
+- Για την τιμή του **Energy Efficiency** θα λάβουμε υπόψιν τον λόγο 1/[sim_seconds*(Runtime Dynamic + Total Leakage]) για κάθε προσομοίωση που έγινε με το ίδιο Benchmark. Αυτό το κάνουμε γιατί όλες οι αρχιτεκτονικές εκτέλεσαν τον ίδιο κώδικα (άρα παραλείπουμε το Instructions στον αριθμητή). Έτσι μπορούμε να συγκρίνουμε πιο είναι ενεργειακά αποδοτικότερο για τη συγκεκριμένη εφαρμογή κάθε φορά.
 
 ### Ερώτημα 2ο
 
-Τα αποτελέσματα βρίσκονται στο φάκελο ./src/Energy_results με τα αντίστοιχα ονόματα από κάθε Benchmar
+Τα αποτελέσματα βρίσκονται στο φάκελο ./src/Energy_results με τα αντίστοιχα ονόματα από κάθε Benchmarks.
+
+Για την εύρεση της επίπτωσης στην απόδοση στις διάφορες παραμέτρους που εξετάζουμε, τα παρακάτω εύρη που αναφέρονται παρακάτω. Να σημειωθεί ότι το μέγεθος των Data/Instruction για την L1 είναι επιλεγμένο έτσι ώστε να το άθροισμά τους να μην υπερβαίνει τα 256 kB:
+  * Cacheline Size: 32, **64**, 128
+  * L1 Data Size [kB]: 16, **32**, 64, 128
+  * L1 Instruction Size [kB]: 16, 32, **64**, 128
+  * L1 Data Associativity: **1**, 2, 4
+  * L1 Instruction Associativity: **1**, 2, 4
+  * L2 Data Associativity: 1, **2**, 4
+  * L2 Size [kB]: **512**, 1024, 2048, 4096  
+  
+Στα παραπάνω, με έντονη γραμματοσειρά σημειώνονται οι default τιμές. 
+Ο αριθμός των instructions που εκτελέστηκε είναι ίσος με 10<sup>8</sup>, γεγονός που επηρέασε τη μη σημαντική επίπτωση των μεταβολών του L1 instruction size, το οποίο θα ήταν αναμενόμενο. 
+
+Παρακάτω παρατίθενται τα χαρακτηριστικά γραφήματα για τις παραπάνω περιπτώσεις, στις οποίες παρουσιάζεται κάποια αξιοσημείωτη μεταβολή στις παραμέτρους εξόδου: Area/Power/Energy Efficiency. Το Power παρακάτω αναπαρίσταται ως Total (Total Leakage + Runtime Dynamic) και vw Peak, προκειμένου να υπάρχει μία αίσθηση της διαφοράς της επίπτωσης στις μέσες και στις ακραίες τιμές της ισχύος. Το Energy Efficiency, όπως αναφέρεται παραπάνω είναι εκφρασμένο ανά μονάδα Instructions, ώστε να απλοποιείται η σύγκριση μεταξύ των σεναρίων. Ειδικά στο spechmmer, υπάρχει ένας επιπλέον πολ/σμός με έναν παράγοντα 0.0005, για την διευκόλυνση της απεικόνισης στο ίδιο γράφημα.
+
+#### CACHE LINE
+Το μέγεθος του Cache Line φαίνεται να επηρεάζει σχεδόν όλα τα μεγέθη ενδιαφέροντος.
+* Cache Line effect to Power
+![Cache Line effect to Power](charts/01_CACHE_W.png)
+
+Παρατηρούμε ότι υπάρχει σημαντική αύξηση του Peak Power με την αύξηση του block size και όχι τόσο στο Total Power.
+
+* Cache Line effect to Area
+![Cache Line effect to Area](charts/01_CACHE_AREA.png)
+
+Η επίπτωση του L1 Instruction Size, καθώς και του L1 Data Size δεν είναι σημαντική για τα μεγέθη 16 kB/32 kB, ενώ έπειτα το Area αυξάνει σημαντικά στα 64 kB/128 kB και στις δύο περιπτώσεις (L1 Instruction και L1 Data Size). Τα συμπεράσματα είναι κοινά για όλα τα benchmarks.
+
+
+
+#### L1D size/L1I size
+
+* L1D size/L1I size effect to CPI
+![L1D size/L1I size effect to CPI](charts/02_L1D_L1I_CPI.png)
+
+Τα μεγέθη του L1 data/L1 instr. προκαλούν αμελητέα μείωση στο CPI.
+
+#### L1D associativity
+
+* L1D associativity effect to CPI
+![L1D associativity effect to CPI](charts/03_L1D_ASSOC_CPI.png)
+
+To CPI δεν φαίνεται να επηρεάζεται.
+
+
+#### L1I associativity
+
+* L1I associativity effect to CPI
+![L1I associativity effect to CPI](charts/04_L1I_ASSOC_CPI.png)
+
+To CPI δεν φαίνεται να επηρεάζεται.
+
+
+
+#### L2D associativity
+
+* L2D associativity effect to CPI
+![L2D associativity effect to CPI](charts/05_L2D_ASSOC_CPI.png)
+
+To CPI δεν φαίνεται να επηρεάζεται.
+
+
+
+#### L2 size [kB]
+
+* L2 size effect to CPI
+![L2 size effect to CPI](charts/06_L2SIZE_CPI.png)
 
 
