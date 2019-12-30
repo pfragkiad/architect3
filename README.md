@@ -169,46 +169,95 @@ chmod +x ./my_mcpat/Scripts/GEM5ToMcPAT.py
 * Cache Line effect to Area
 ![Cache Line effect to Area](charts/01_CACHE_AREA.png)
 
-Η επίπτωση του L1 Instruction Size, καθώς και του L1 Data Size δεν είναι σημαντική για τα μεγέθη 16 kB/32 kB, ενώ έπειτα το Area αυξάνει σημαντικά στα 64 kB/128 kB και στις δύο περιπτώσεις (L1 Instruction και L1 Data Size). Τα συμπεράσματα είναι κοινά για όλα τα benchmarks.
+Η επίπτωση του block size στο Area είναι σημαντική κυρίως στη μετάβαση από 64 kB στα 128 kB.
 
+* Cache Line effect to Energy Efficiency
+![Cache Line effect to Efficiency](charts/01_CACHE_PERF.png)
 
+Στα spechmmer και speclibm βλέπουμε μία μικρή αύξηση στο ανηγμένο efficiency, ενώ στα specbzip, specmcf, specsjeng έχουμε μείωση του efficiency καθώς αυξάνεται το block size.
 
 #### L1D size/L1I size
 
-* L1D size/L1I size effect to CPI
-![L1D size/L1I size effect to CPI](charts/02_L1D_L1I_CPI.png)
+* L1D size/L1I size effect to Power
+![L1D size/L1I size effect to Power](charts/02_L1D_L1I_W.png)
 
-Τα μεγέθη του L1 data/L1 instr. προκαλούν αμελητέα μείωση στο CPI.
+Η επίπτωση του L1 Instruction Size, καθώς και του L1 Data Size δεν είναι σημαντική για τα μεγέθη 16 kB/32 kB, ενώ έπειτα το Power αυξάνει σημαντικά στα 64 kB/128 kB και στις δύο περιπτώσεις (L1 Instruction και L1 Data Size). Τα συμπεράσματα είναι κοινά για όλα τα benchmarks.
+
+* L1D size/L1I size effect to Area
+![L1D size/L1I size effect to Area](charts/02_L1D_L1I_AREA.png)
+
+Η επίπτωση του L1 Instruction Size, καθώς και του L1 Data Size δεν είναι σημαντική για τα μεγέθη 16 kB/32 kB, ενώ έπειτα το Area αυξάνει σημαντικά στα 64 kB/128 kB και στις δύο περιπτώσεις (L1 Instruction και L1 Data Size). Τα συμπεράσματα είναι κοινά για όλα τα benchmarks.
+
+* L1D size/L1I size effect to Efficiency
+![L1D size/L1I size effect to Efficiency](charts/02_L1D_L1I_PERF.png)
+
+Βλέπουμε ότι σε όλες τις περιπτώσεις του L1 Data Size/L2 Data Size το ανηγμένο efficiency είναι μεγαλύτερο στα 16 kB/32 kB (όπου οι τιμές είναι περίπου ίδιες).
 
 #### L1D associativity
 
-* L1D associativity effect to CPI
-![L1D associativity effect to CPI](charts/03_L1D_ASSOC_CPI.png)
+* L1D associativity effect to Power
+![L1D associativity effect to Power](charts/03_L1D_ASSOC_W.png)
 
-To CPI δεν φαίνεται να επηρεάζεται.
+To Power (Peak) φαίνεται να αυξάνεται λίγο περισσότερο κυρίως στη μετάβαση από 2 σε 4 σε όλα τα benchmarks.
 
+* L1D associativity effect to Area
+![L1D associativity effect to Area](charts/03_L1D_ASSOC_AREA.png)
+
+To Area φαίνεται να αυξάνεται σημαντικά κυρίως στη μετάβαση από 2 σε 4 σε όλα τα benchmarks.
+
+* L1D associativity effect to Efficiency
+![L1D associativity effect to Efficiency](charts/03_L1D_ASSOC_PERF.png)
+
+To efficiency φαίνεται να είναι υψηλότερο στις περιπτώσεις όπου το associativity παίρνει τις τιμές 1 και 2 (για όλα τα benchmarks).
 
 #### L1I associativity
 
-* L1I associativity effect to CPI
-![L1I associativity effect to CPI](charts/04_L1I_ASSOC_CPI.png)
+* L1I associativity effect to Power
+![L1I associativity effect to Power](charts/04_L1I_ASSOC_W.png)
 
-To CPI δεν φαίνεται να επηρεάζεται.
+To Power (Peak) φαίνεται να πέφτει λίγο περισσότερο κυρίως στη μετάβαση από 2 σε 4 σε όλα τα benchmarks.
 
+* L1I associativity effect to Area
+![L1I associativity effect to Area](charts/04_L1I_ASSOC_AREA.png)
 
+To Area φαίνεται να πέφτει κατά τη μετάβαση από 2 σε 4 σε όλα τα benchmarks.
+
+* L1I associativity effect to Efficiency
+![L1I associativity effect to Efficiency](charts/04_L1I_ASSOC_PERF.png)
+
+To efficiency φαίνεται να είναι υψηλότερο στις περιπτώσεις όπου το associativity παίρνει την τιμή 4 (για όλα τα benchmarks).
 
 #### L2D associativity
 
-* L2D associativity effect to CPI
-![L2D associativity effect to CPI](charts/05_L2D_ASSOC_CPI.png)
+* L2D associativity effect to Power
+![L2D associativity effect to Power](charts/05_L2D_ASSOC_W.png)
 
-To CPI δεν φαίνεται να επηρεάζεται.
+To Power (Peak+Total) φαίνεται να μην επηρεάζεται σημαντικά σε όλα τα benchmarks.
 
+* L2D associativity effect to Area
+![L2D associativity effect to Area](charts/05_L2D_ASSOC_AREA.png)
 
+To Area φαίνεται να μην επηρεάζεται σημαντικά σε όλα τα benchmarks.
+
+* L2D associativity effect to Efficiency
+![L2D associativity effect to Efficiency](charts/05_L2D_ASSOC_PERF.png)
+
+To efficiency δεν φαίνεται να επηρεάζεται από το L2D associativity (για όλα τα benchmarks).
 
 #### L2 size [kB]
 
-* L2 size effect to CPI
-![L2 size effect to CPI](charts/06_L2SIZE_CPI.png)
+* L2 size effect to Power
+![L2 size effect to Power](charts/06_L2_SIZE_W.png)
 
+To Power (Peak) φαίνεται να αυξάνεται ελαφρώς με την αύξηση του L2 size.
+
+* L2 size effect to Area
+![L2 size effect to Area](charts/06_L2_SIZE_AREA.png)
+
+To Area φαίνεται να αυξάνεται σημαντικά για L2 size &ge; 1 MB.
+
+* L2 size effect to Efficiency
+![L2 size effect to Efficiency](charts/06_L2_SIZE_PERF.png)
+
+To efficiency δεν φαίνεται να επηρεάζεται συνολικά λόγω μεταβολής του L2 size (για όλα τα benchmarks).
 
